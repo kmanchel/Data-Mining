@@ -2,18 +2,15 @@
 
 Read_me 
 
-Homework 2 Submission
-Name: Kaushik Manchella
-
 Required File list: 
-dating-full.csv
-preprocess.py
-2_1.py
-2_2.py
-discretize.py
-split.py
-5_1.py
-5_2.py
+dating-full.csv,
+preprocess.py,
+2_1.py,
+2_2.py,
+discretize.py,
+split.py,
+5_1.py,
+5_2.py,
 5_3.py
 
 Instructions: 
