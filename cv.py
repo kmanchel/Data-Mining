@@ -4,7 +4,7 @@
 import pandas as pd
 import numpy as np
 import preprocess_assg3_fns as pp
-import hw2
+import nbc
 import lr_svm_fns as lr_svm
 import statistics
 import math
