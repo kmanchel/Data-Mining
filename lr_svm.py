@@ -1,4 +1,8 @@
-#NOTE for TA's: There are 3 functions below. One is the LR, another is SVM and the final is the lr_svm which takes 3 input arguments as specified. 
+#There are 3 functions below. One is the LR, another is SVM and the final is the lr_svm which.
+#Arguments for each of the functions are taken from the raw_input entered on commandline
+#Inputs required: Training data filename, test data filename, specify learning algorithm to be used ("1" for Logistic Regression, "2" for SVM)
+#Sample Command line input: $python lr svm.py trainingSet.csv testSet.csv 1
+
 #The code will run the lr_svm function 
 
 import sys
@@ -6,51 +10,6 @@ import numpy as np
 import pandas as pd
 
 #Logistic Regression Function
-def lr(trainingSet, testSet):
-    #Preprocessing Training Set
-    df_train = trainingSet
-    y_train = df_train['decision']
-    x_train = df_train.copy()
-    x_train.drop(columns=['decision'], inplace = True)
-    x_train.insert(0, 'intercept', 1)
-    
-    #Preprocessing Testing Set
-    df_test = testSet
-    y_test = df_test['decision']
-    x_test = df_test.copy()
-    x_test.drop(columns=['decision'], inplace = True)
-    x_test.insert(0, 'intercept', 1)
-    
-    def logistic(z):
-        return 1 / (1 + np.exp(-z))
-    def scores(weights, x):
-        return(-np.dot(x,weights.T))
-    def predict(y_i):
-        return(logistic(y_i))
-    
-    def gradient_descent(x,y,lmbda = 0.01,lr=0.01,max_iter=500):
-        weights = np.zeros(len(x.columns))
-        for i in range(0,max_iter):
-            y_i = predict(scores(weights=weights,x=x))
-            err = list(y) - y_i
-            del_J = np.dot(err,x)+(lmbda*weights)
-            weights -= lr*del_J
-        return(weights)
-    
-    w_trained = gradient_descent(x=x_train,y=y_train)
-    
-    df_train['prediction'] = list((np.round(predict(scores(weights=w_trained,x=x_train)))))
-    df_test['prediction'] = list((np.round(predict(scores(weights=w_trained,x=x_test)))))
-    
-    correct_train = df_train[(df_train['decision'] == df_train['prediction'])]['prediction'].count()
-    training_acc = round(correct_train/len(df_train),2)
-    print("Training Accuracy: ", training_acc)
-
-    correct_test = df_test[(df_test['decision'] == df_test['prediction'])]['prediction'].count()
-    testing_acc = round(correct_test/len(df_test),2)
-    print("Testing Accuracy: ", testing_acc)
-    return(training_acc,testing_acc)
-
 def lr_0(trainingSet, testSet):
     #Preprocessing Training Set
     df_train = trainingSet
